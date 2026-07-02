@@ -58,9 +58,9 @@ the DAPI channel index:
 ```bash
 python src/01_segment.py --input /path/to/blastocyst.czi --dapi-channel 0
 python src/02_measure.py --image /path/to/blastocyst.czi --labels outputs/labels.tif \
-    --channel-names DAPI NANOG GATA6 CDX2
+    --channel-names DAPI marker_A marker_B marker_C
 python src/03_classify.py --input outputs/measurements.tsv \
-    --markers NANOG_mean GATA6_mean CDX2_mean \
+    --markers marker_A_mean marker_B_mean marker_C_mean \
     --lineages EPI PE TE
 ```
 
