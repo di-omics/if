@@ -53,7 +53,7 @@ def main():
     parser.add_argument("--markers", nargs="+",
                         default=["marker_A_mean", "marker_B_mean", "marker_C_mean"],
                         help="marker columns to use for classification")
-    parser.add_argument("--lineages", nargs="+", default=["EPI", "PE", "TE"],
+    parser.add_argument("--lineages", nargs="+", default=["lineage_A", "lineage_B", "lineage_C"],
                         help="lineage names (same order as markers)")
     parser.add_argument("--method", choices=["max", "gmm"], default="max",
                         help="classification method (default: max)")

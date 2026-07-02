@@ -35,10 +35,11 @@ This runs the full chain on a synthetic 3D multi-channel OME-TIFF:
    Cellpose so no GPU is needed).
 3. **02_measure.py** - per-nucleus volume, centroid, and per-channel
    mean/integrated intensity via `skimage.regionprops`.
-4. **03_classify.py** - assigns each nucleus a lineage (EPI / PE / TE)
+4. **03_classify.py** - assigns each nucleus a lineage (e.g. EPI / PE / TE)
    based on which marker channel has the highest normalized intensity.
    A `--method gmm` flag switches to a 2-component GMM gate.
-### Optional: napari review
+
+## Optional: napari review
 
 ```bash
 python src/review_napari.py \
@@ -61,7 +62,7 @@ python src/02_measure.py --image /path/to/blastocyst.czi --labels outputs/labels
     --channel-names DAPI marker_A marker_B marker_C
 python src/03_classify.py --input outputs/measurements.tsv \
     --markers marker_A_mean marker_B_mean marker_C_mean \
-    --lineages EPI PE TE
+    --lineages lineage_A lineage_B lineage_C
 ```
 
 Published confocal stacks are available from:
@@ -85,7 +86,7 @@ def classify_max_marker(df, marker_cols, lineage_names):
     return [lineage_names[i] for i in best]
 ```
 
-Each nucleus is assigned the lineage whose marker is strongest after min-max normalization. The `--method gmm` flag fits a 2-component GMM per marker and uses posteriors instead.
+Each nucleus is assigned the lineage whose marker is strongest after min-max normalization. Pass `--lineages` to set the names (e.g. `EPI PE TE`). The `--method gmm` flag fits a 2-component GMM per marker and uses posteriors instead.
 
 ## Files
 
