@@ -38,9 +38,6 @@ This runs the full chain on a synthetic 3D multi-channel OME-TIFF:
 4. **03_classify.py** - assigns each nucleus a lineage (EPI / PE / TE)
    based on which marker channel has the highest normalized intensity.
    A `--method gmm` flag switches to a 2-component GMM gate.
-5. **plots.py** - static QC figure: nucleus volume distribution, marker
-   intensities by lineage, and classification proportions.
-
 ### Optional: napari review
 
 ```bash
@@ -65,14 +62,11 @@ python src/02_measure.py --image /path/to/blastocyst.czi --labels outputs/labels
 python src/03_classify.py --input outputs/measurements.tsv \
     --markers NANOG_mean GATA6_mean CDX2_mean \
     --lineages EPI PE TE
-python src/plots.py
 ```
 
 Published confocal stacks are available from:
 - **Niakan lab, Simon et al. 2025** (Nat Commun) - figshare [28597145](https://doi.org/10.6084/m9.figshare.28597145)
 - Reference pipeline - zenodo [15640446](https://doi.org/10.5281/zenodo.15640446)
-
-![QC plots](assets/blastocyst_qc.png)
 
 ## How it works
 
@@ -100,6 +94,5 @@ src/generate_synthetic.py   synthetic 3D multi-channel OME-TIFF + ground-truth l
 src/01_segment.py           Cellpose 3D nuclear segmentation (or --synthetic for GT)
 src/02_measure.py           per-nucleus measurements via regionprops
 src/03_classify.py          generic marker-threshold / GMM lineage classification
-src/plots.py                static QC figure
 src/review_napari.py        optional interactive 3D review in napari
 ```
